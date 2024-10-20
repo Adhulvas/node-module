@@ -27,13 +27,14 @@ const addNewUser=(req,res,next)=>{
 const updateUser=(req,res,next)=>{
   console.log(req.params);
   const userId=parseInt(req.params.id)
-  const updatedData = req.body
+
   for (let i = 0; i < users.length; i++) {
     if(users[i].id===userId) {
-      users[i]={...users[i],...updatedData}
+      users[i]=req.body
+      users[i].id=userId
     }
   }
-  res.status(200).json({user:users[i]})
+  res.status(200).json(users)
 }
 
 module.exports = {getAllUsers,getAUser,addNewUser,updateUser}

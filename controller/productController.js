@@ -37,12 +37,13 @@ const postProducts=(req,res,next)=>{
 
 const updateProduct=(req,res,next)=>{
   console.log(req.params);
-  let prodId=parseInt(req.params.id)
+  const prodId=parseInt(req.params.id)
   let products = store.products
+
   for (let i = 0; i < products.length; i++) {
     if(products[i].id===prodId) {
-      products=products[i].push(req.body)
-      break;
+      products[i]=req.body
+      products[i].id=prodId
     }
   }
   res.status(200).json(products)
